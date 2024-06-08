@@ -1,0 +1,28 @@
+
+services:
+  pwl-homeassistant:
+    network_mode: host
+    cap_add:
+      - SYS_ADMIN
+    build:
+      context: .
+    environment:
+      MQTT_USER: <mosquitto_user>
+      MQTT_PASS: <mosquitto_password>
+      MQTT_HOST: <mqtt_host>
+      PWL_DEVICE_ID: <device_id>
+      PWL_DEVICE_NAME: <device_name>
+      PWL_DEVICE_MODEL: <device_model>
+      PWL_DEVICE_MANUFACTURER: <device_manufacturer>
+      PWL_EMAIL: <email>
+      PWL_PASS: <password>
+      LOG_LEVEL: info
+      MQTT_DISCOVERY: true
+      #CHANNEL_NAME_1: <channel_name_1>
+      #CHANNEL_NAME_2: <channel_name_2>
+      #CHANNEL_NAME_3: <channel_name_3>
+      #CHANNEL_NAME_4: <channel_name_4>
+      #CHANNEL_NAME_5: <channel_name_5>
+      #CHANNEL_NAME_6: <channel_name_6>
+      #CHANNEL_NAME_7: <channel_name_7>
+      TZ: Europe/Berlin
