@@ -1,11 +1,10 @@
 
 services:
   pwl-homeassistant:
+    image: ghcr.io/svenfinn/pwl-homeassistant:main
     network_mode: host
     cap_add:
       - SYS_ADMIN
-    build:
-      context: .
     environment:
       MQTT_USER: <mosquitto_user>
       MQTT_PASS: <mosquitto_password>
