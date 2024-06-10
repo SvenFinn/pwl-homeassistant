@@ -23,7 +23,14 @@ async function main(){
     }
     const weatherData = await pwlClient.getWeatherData(process.env.PWL_DEVICE_ID);
     mqttClient.publishWeatherData(weatherData);
-    const sleepOffset = 300000 - ( Date.now()-weatherData.timestamp.getTime()); // 5 minutes - time since last data = time to sleep
-    logger.info(`Sleeping for ${(sleepOffset+60000)/1000}s`);
-    setTimeout(main, sleepOffset + 60000);
+    const date = new Date();
+    if(date.getHours() < 6){
+        logger.info("Sleeping until 6am");
+        setTimeout(main, 6*3600000 - date.getTime());
+        return;
+    } else {
+        const sleepOffset = 300000 - ( Date.now()-weatherData.timestamp.getTime()); // 5 minutes - time since last data = time to sleep
+        logger.info(`Sleeping for ${(sleepOffset+60000)/1000}s`);
+        setTimeout(main, sleepOffset + 60000);
+    }
 }
