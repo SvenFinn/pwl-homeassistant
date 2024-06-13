@@ -99,6 +99,12 @@ export class PwlClient {
     }
     public async getWeatherData(deviceId: string): Promise<WeatherData>{
         this.logger.info("Requesting weather data");
+        const date = new Date();
+        if(date.getHours() < 6){
+            const weatherData = this.createEmptyWeatherObject(weatherDataAdapter) as WeatherData;
+            weatherData.timestamp = new Date();
+            return weatherData;
+        }
         const weatherCSV = await retryWrapper((async ()=>{
             await this.waitForAuthentication();
             return await this.requestWeather(deviceId);
@@ -194,7 +200,7 @@ export class PwlClient {
         return result;
     }
     
-    private createWeatherObject(csvData: Array<Array<string>>, adapter: Record<string, any>|Array<Record<string, any>>): Record<string, any> {
+    private createWeatherObject(csvData: Array<Array<string>>, adapter: Record<string, any>|Array<Record<string, any>>): Record<string, any> | any {
         if(Array.isArray(adapter)){
             return adapter.map((adapter) => {
                 return this.createWeatherObject(csvData, adapter);
@@ -210,6 +216,25 @@ export class PwlClient {
             }
         } else {
             return {};
+        }
+    }
+
+    private createEmptyWeatherObject(adapter: Record<string, any>|Array<Record<string, any>>): Record<string, any> | any {
+        if(Array.isArray(adapter)){
+            return adapter.map((adapter) => {
+                return this.createEmptyWeatherObject(adapter);
+            });
+        }
+        if(typeof adapter === "object"){
+            if(adapter.columnId !== undefined){
+                return "null";
+            } else {
+                return Object.entries(adapter).reduce((acc, [key, value]) => {
+                    return {...acc, [key]: this.createEmptyWeatherObject(value)};
+                }, {});
+            }
+        } else {
+            return "null";
         }
     }
     
