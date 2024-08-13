@@ -14,7 +14,7 @@
     "dotenv": "^16.4.5",
     "mqtt": "^5.7.0",
     "pino": "^9.1.0",
-    "pino-pretty": "^11.1.0",
+    "pino-pretty": "^11.2.2",
     "puppeteer": "^22.10.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
