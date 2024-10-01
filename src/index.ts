@@ -35,3 +35,7 @@ async function main() {
     }
 
 }
+
+process.on("SIGTERM", () => {
+    process.exit(0);
+});

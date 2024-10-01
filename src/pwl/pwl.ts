@@ -1,8 +1,7 @@
 import puppeteer from "puppeteer";
 import pino, { Logger } from "pino";
 import { getLoginPage, generateExportURL } from "./urlBuilder";
-import "dotenv";
-import { configDotenv } from "dotenv";
+import dotenv from "dotenv";
 import { parse } from "csv-parse";
 import { retryWrapper } from "./retryWrapper";
 import { weatherDataAdapter } from "./adapter/weatherData/adapters";
@@ -10,7 +9,7 @@ import { DiscoveryDevice } from "../types/discovery/device";
 import { deviceObj } from "./deviceObj";
 import { WeatherData } from "../types/weatherData";
 
-configDotenv();
+dotenv.config();
 
 type AuthState = "authenticating" | "authenticated" | "failed"
 
@@ -74,7 +73,7 @@ export class PwlClient {
         await browser.close();
 
         if (loginStorage === null) {
-            throw new Error("Login failed");
+            throw new Error("Login failed - Incorrect E-Mail or Password");
         }
         const login = JSON.parse(loginStorage);
         const jwt = login.jwt;
@@ -173,7 +172,14 @@ export class PwlClient {
         const response = await fetch(url.toString());
         if (!response.ok) {
             this.jwtToken = null;
-            throw new Error("Failed to fetch weather data");
+            const error = await response.text();
+            let errorMessage = "";
+            try {
+                errorMessage = JSON.parse(error).message;
+            } catch (e) {
+                errorMessage = error;
+            }
+            throw new Error(`Failed to get weather data: ${errorMessage}`);
         }
         return response.text()
     }
