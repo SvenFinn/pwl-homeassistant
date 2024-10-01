@@ -1,7 +1,7 @@
 import { DateAdapter } from "../types/types";
 
 export const timeStampAdapter: DateAdapter = {
-    columnId:0,
+    columnId: 0,
     name: "Letztes Update",
     device_class: "timestamp",
     convertValue: (value: string, unit: string) => {

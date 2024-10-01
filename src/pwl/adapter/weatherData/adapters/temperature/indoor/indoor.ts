@@ -1,5 +1,5 @@
 import { AdapterSchema } from "../../../types/types";
-import { defaultConvertUnit,  defaultConvertValueInt,convertValueTemperature, convertUnitTemperature } from "../../defaultConvert";
+import { defaultConvertUnit, defaultConvertValueInt, convertValueTemperature, convertUnitTemperature } from "../../defaultConvert";
 
 const indoorTTemperatureAdapter: AdapterSchema["temperature"]["indoor"]["temperature"] = {
     columnId: 3,

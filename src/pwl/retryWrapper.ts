@@ -1,9 +1,9 @@
-export async function retryWrapper(fn:Function, retries:number, ...args:any[]){
+export async function retryWrapper(fn: Function, retries: number, ...args: any[]) {
     let tries = 0;
-    while(tries < retries){
-        try{
+    while (tries < retries) {
+        try {
             return await fn(...args);
-        } catch(e){
+        } catch (e) {
             console.error(e);
             tries++;
         }

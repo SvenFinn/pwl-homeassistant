@@ -6,10 +6,10 @@ const windDirectionAdapter: AdapterSchema["wind"]["direction"] = {
     name: "Windrichtung",
     device_class: "wind_speed",
     convertValue(value, unit) {
-        if(unit === "deg"){
+        if (unit === "deg") {
             return defaultConvertValueInt(value, unit);
-        } else if(unit === "rad"){
-            return Math.round(Number(value) * 180 / Math.PI); 
+        } else if (unit === "rad") {
+            return Math.round(Number(value) * 180 / Math.PI);
         } else {
             throw new Error(`Invalid unit for wind direction: ${unit}`);
         }
@@ -19,10 +19,10 @@ const windDirectionAdapter: AdapterSchema["wind"]["direction"] = {
     }
 }
 
-function windSpeedConvertValue(value: string, unit: string): number | "null"{
-    if(unit === "km/h"){
+function windSpeedConvertValue(value: string, unit: string): number | "null" {
+    if (unit === "km/h") {
         return defaultConvertValueFloat(value, unit);
-    } else if(unit === "m/s"){
+    } else if (unit === "m/s") {
         return Math.round(Number(value) * 3.6);
     } else {
         throw new Error("Invalid unit for wind speed");
@@ -32,7 +32,7 @@ function windSpeedConvertValue(value: string, unit: string): number | "null"{
 
 const windSpeedAdapter: AdapterSchema["wind"]["speed"] = {
     columnId: 12,
-    name: "Windgeschwindigkeit", 
+    name: "Windgeschwindigkeit",
     device_class: "wind_speed",
     convertUnit: defaultConvertUnit,
     convertValue: windSpeedConvertValue

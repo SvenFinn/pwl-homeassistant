@@ -5,7 +5,7 @@ const dailyRainAdapter: AdapterSchema["rainfall"]["rain"]["daily"] = {
     columnId: 17,
     name: "Regenmenge (Tag)",
     device_class: "water",
-    convertUnit: defaultConvertUnit, 
+    convertUnit: defaultConvertUnit,
     convertValue: defaultConvertValueFloat
 }
 
@@ -22,7 +22,7 @@ const rainRateAdapter: AdapterSchema["rainfall"]["rain"]["rate"] = {
     name: "Regenrate",
     device_class: "water",
     convertUnit: (unit: string) => {
-        if(unit === "mm"){
+        if (unit === "mm") {
             return "mm/h";
         } else {
             return defaultConvertUnit(unit);

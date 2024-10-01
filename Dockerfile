@@ -1,25 +1,22 @@
-FROM ghcr.io/puppeteer/puppeteer:latest as base
-
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
-ENV PUPPETEER_EXECUTABLE_PATH /usr/bin/google-chrome-stable
-
-FROM base as deps
-WORKDIR /usr/src/app
-
-COPY --chown=pptruser:pptruser package*.json ./
-RUN npm ci
-
-FROM deps as build
-
-COPY --chown=pptruser:pptruser . .
-RUN npm run build
-
-FROM base as final
+FROM ghcr.io/puppeteer/puppeteer:latest AS base
 
 WORKDIR /app
 
-COPY --from=build /usr/src/app/dist ./
-COPY --from=deps /usr/src/app/node_modules ./node_modules
-COPY --from=deps /usr/src/app/package.json ./package.json
+FROM base AS deps
+
+COPY --chown=pptruser:pptruser package*.json ./
+RUN npm ci --omit-dev --loglevel=info
+
+FROM base AS build
+
+COPY --chown=pptruser:pptruser . .
+RUN npm ci --loglevel=info; \ 
+    npm run build;
+
+FROM base AS final
+
+COPY --from=build /app/dist ./
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/package.json ./package.json
 
 CMD ["node", "index.js"]

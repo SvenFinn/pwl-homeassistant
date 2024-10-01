@@ -1,4 +1,3 @@
-import { networkInterfaces } from "os";
 import { DiscoveryDevice } from "../types/discovery/device";
 
 export const deviceObj: DiscoveryDevice["device"] = {

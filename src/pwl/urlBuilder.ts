@@ -1,4 +1,4 @@
-export function getLoginPage(){
+export function getLoginPage() {
     return "https://proweatherlive.net/login";
 }
 

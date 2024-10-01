@@ -4,7 +4,7 @@ import { config } from "dotenv";
 config();
 
 export const channelsTemperatureAdapter: AdapterSchema["temperature"]["channels"] = [
-    createChannelAdapter(20,34, process.env.CHANNEL_NAME_1 || "Channel 1"),
+    createChannelAdapter(20, 34, process.env.CHANNEL_NAME_1 || "Channel 1"),
     createChannelAdapter(22, 35, process.env.CHANNEL_NAME_2 || "Channel 2"),
     createChannelAdapter(24, 36, process.env.CHANNEL_NAME_3 || "Channel 3"),
     createChannelAdapter(26, 37, process.env.CHANNEL_NAME_4 || "Channel 4"),

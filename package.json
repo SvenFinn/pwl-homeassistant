@@ -15,8 +15,11 @@
     "mqtt": "^5.10.1",
     "pino": "^9.4.0",
     "pino-pretty": "^11.2.2",
-    "puppeteer": "^23.3.0",
+    "puppeteer": "^23.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.4",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.4"
+    "typescript": "^5.6.2"
   }
 }
