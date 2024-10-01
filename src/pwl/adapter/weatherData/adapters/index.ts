@@ -6,7 +6,7 @@ import { pressureAdapter } from "./pressure/pressure";
 import { luminosityAdapter } from "./luminosity/luminosity";
 import { rainfallAdapter } from "./rainfall/rainfall";
 
-export const weatherDataAdapter: AdapterSchema= {
+export const weatherDataAdapter: AdapterSchema = {
     timestamp: timeStampAdapter,
     temperature: temperatureAdapter,
     wind: windAdapter,
