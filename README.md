@@ -37,13 +37,9 @@ The following environment variables are available:
 
 ### Getting the device id
 
-To get the device id of your ProWeatherLive weather station, you need to log in to the ProWeatherLive website, then navigate to the "Data Export" section. There, using the "Export Data" button, download the CSV export of your weather station. The device Id can be extracted from the URL, where the csv is downloaded from. The URL should look like this:
+This project requires a device ID to be able to access the weather stations data. The device ID is unique per weather station. To get the device ID, you need to follow the steps listed [here](./docs/Device-Id.md).
 
-```http
-https://proweatherlive.net/api/weatherMetrics/export?device=<DEVICE_ID>&startTime=2024-08-12T22%3A00%3A00.000Z&endTime=2024-08-13T21%3A59%3A59.999Z&format=csv&units%5B0%5D%5Btype%5D=direction&units%5B0%5D%5Bunit%5D=m&units%5B1%5D%5Btype%5D=distance&units%5B1%5D%5Bunit%5D=km&units%5B2%5D%5Btype%5D=temperature&units%5B2%5D%5Bunit%5D=%C2%B0C&units%5B3%5D%5Btype%5D=baroPressure&units%5B3%5D%5Bunit%5D=hPa&units%5B4%5D%5Btype%5D=windSpeed&units%5B4%5D%5Bunit%5D=km%2Fh&units%5B5%5D%5Btype%5D=windDirection&units%5B5%5D%5Bunit%5D=16%20Pts&units%5B6%5D%5Btype%5D=rain&units%5B6%5D%5Bunit%5D=mm&units%5B7%5D%5Btype%5D=lightIntensity&units%5B7%5D%5Bunit%5D=Lux&units%5B8%5D%5Btype%5D=hcho&units%5B8%5D%5Bunit%5D=ppb&units%5B9%5D%5Btype%5D=coco2&units%5B9%5D%5Bunit%5D=ppm&%24accessToken=******************&locale=en
-```
-
-The device id is the value of the `device` parameter in the URL.
+**Important:** ProWeatherLive provides a device ID in the `Edit Devices` section of the website. This device ID is **not** the correct one for this project. Follow the steps listed [here](./docs/Device-Id.md) to get the correct device ID.
 
 ## MQTT Discovery
 
