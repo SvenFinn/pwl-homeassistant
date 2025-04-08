@@ -67,7 +67,6 @@ export class PwlClient {
 
         // Fetch JWT token from local storage
         const loginStorage = await page.evaluate(() => {
-            // @ts-ignore
             return window.localStorage.getItem("login");
         });
         await browser.close();
