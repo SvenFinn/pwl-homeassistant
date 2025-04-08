@@ -1,8 +1,10 @@
-
 services:
   pwl-homeassistant:
     image: ghcr.io/svenfinn/pwl-homeassistant:main
     network_mode: host
+    build:
+      context: .
+      dockerfile: Dockerfile
     cap_add:
       - SYS_ADMIN
     environment:

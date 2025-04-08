@@ -17,6 +17,5 @@ FROM base AS final
 
 COPY --from=build /app/dist ./
 COPY --from=deps /app/node_modules ./node_modules
-COPY --from=deps /app/package.json ./package.json
 
 CMD ["node", "index.js"]
